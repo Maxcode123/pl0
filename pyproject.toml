@@ -16,6 +16,9 @@ build-backend = "uv_build"
 [tool.uv.build-backend]
 source-exclude = ["*.swp"]
 
+[project.scripts]
+pl0 = "pl0.__main__:main"
+
 [dependency-groups]
 dev = [
     "ruff>=0.17.1",
