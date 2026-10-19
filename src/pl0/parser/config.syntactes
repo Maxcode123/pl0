@@ -1,0 +1,54 @@
+program -> block DOT
+block -> assignments declarations procedures statement
+assignments ->
+assignments -> CONST assign_list SEMICOLON
+assign_list -> assign
+assign_list -> assign COMMA assign_list
+assign -> ID EQ INT
+declarations ->
+declarations -> VAR ID SEMICOLON
+declarations -> VAR ID COMMA id_list SEMICOLON
+id_list -> ID
+id_list -> ID COMMA id_list
+procedures ->
+procedures -> procedure procedures
+procedure -> PROCEDURE ID SEMICOLON block SEMICOLON
+statement ->
+statement -> assign_stm
+statement -> call_stm
+statement -> read_stm 
+statement -> write_stm 
+statement -> begin_stm
+statement -> if_stm
+statement -> while_stm
+assign_stm -> ID ASSIGN expression
+call_stm -> CALL ID
+read_stm -> QMARK ID
+write_stm -> BANG expression
+begin_stm -> BEGIN statement_list END
+statement_list -> statement
+statement_list -> statement SEMICOLON statement_list
+if_stm -> IF condition THEN statement
+while_stm -> WHILE condition DO statement
+condition -> ODD expression
+condition -> expression EQ expression
+condition -> expression HASH expression
+condition -> expression LT expression
+condition -> expression LE expression
+condition -> expression GT expression
+condition -> expression GE expression
+expression -> signed_or_unsigned_term multiple_term_list
+multiple_term_list ->
+multiple_term_list -> non_empty_term_list
+non_empty_term_list -> signed_term
+non_empty_term_list -> signed_term non_empty_term_list
+signed_term -> PLUS term
+signed_term -> MINUS term
+signed_or_unsigned_term -> term
+signed_or_unsigned_term -> signed_term
+term -> factor
+term -> term MULT factor
+term -> term DIV factor
+factor -> ID
+factor -> INT
+factor -> LPAREN expression RPAREN
